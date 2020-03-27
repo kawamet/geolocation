@@ -11,18 +11,20 @@ import org.springframework.stereotype.Service;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Service
 public class Covid19Parser {
-    //private static final String COVID_CONFIRMED_URL = "https://data.humdata.org/hxlproxy/api/data-preview.csv?url=https%3A%2F%2Fraw.githubusercontent.com%2FCSSEGISandData%2FCOVID-19%2Fmaster%2Fcsse_covid_19_data%2Fcsse_covid_19_time_series%2Ftime_series_covid19_confirmed_global.csv&filename=time_series_covid19_confirmed_global.csv";
 
-    private static final String COVID_CONFIRMED_URL = "C:\\Users\\Karolina\\Desktop\\java_projekty_all\\spring\\geolocation\\time_series_covid19_confirmed_global.csv";
+    private static final String COVID_CONFIRMED_URL = "time_series_covid19_confirmed_global.csv";
 
     private DataRepo dataRepo;
 
     public Covid19Parser(DataRepo dataRepo) {
         this.dataRepo = dataRepo;
     }
+
 
 //    @EventListener(ApplicationReadyEvent.class)
 //    public void get() throws IOException {
@@ -44,7 +46,7 @@ public class Covid19Parser {
 //
 //    }
 
-    //saved on local machine
+
     @EventListener(ApplicationReadyEvent.class)
     public void get() throws IOException {
         DownloadFile downloadFile = new DownloadFile();
@@ -54,10 +56,26 @@ public class Covid19Parser {
         for (CSVRecord strings : parse) {
             double lat = Double.parseDouble(strings.get("Lat"));
             double lon = Double.parseDouble(strings.get("Long"));
-            String text = strings.get("3/26/20");
+            String text = getLastDate(strings);
             String country = strings.get("Province/State").isEmpty() ? strings.get("Country/Region") : strings.get("Province/State");
             dataRepo.addPoint(new Point(lat,lon, text, country));
         }
 
+    }
+
+    private String getLastDate(CSVRecord strings) {
+        String text;
+        LocalDate today = LocalDate.now();
+        LocalDate yesterday = today.minusDays(1);
+        DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("M/dd/yy");
+        String todayS = today.format(newPattern);
+        String yesterdayS = yesterday.format(newPattern);
+
+        try{
+            text = strings.get(todayS);
+        }catch (IllegalArgumentException e){
+            text = strings.get(yesterdayS);
+        }
+        return text;
     }
 }

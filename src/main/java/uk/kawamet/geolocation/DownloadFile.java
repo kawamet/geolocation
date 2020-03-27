@@ -13,15 +13,11 @@ public class DownloadFile {
 
         URL url = new URL("https://data.humdata.org/hxlproxy/api/data-preview.csv?url=https%3A%2F%2Fraw.githubusercontent.com%2FCSSEGISandData%2FCOVID-19%2Fmaster%2Fcsse_covid_19_data%2Fcsse_covid_19_time_series%2Ftime_series_covid19_confirmed_global.csv&filename=time_series_covid19_confirmed_global.csv");
 
-        // local file path
         File file = new File("time_series_covid19_confirmed_global.csv");
 
-        // connection and read timeouts
-        // TODO: adjust as per your own requirement
         int connectionTimeout = 10 * 1000; // 10 sec
         int readTimeout = 300 * 1000; // 3 min
 
-        // download and save file
         FileUtils.copyURLToFile(url, file, connectionTimeout, readTimeout);
     }
 }

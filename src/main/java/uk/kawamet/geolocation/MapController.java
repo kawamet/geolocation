@@ -10,7 +10,7 @@ import java.util.List;
 @Controller
 public class MapController {
 
-    DataRepo dataRepo;
+    private DataRepo dataRepo;
 
     public MapController(DataRepo dataRepo) {
         this.dataRepo = dataRepo;
