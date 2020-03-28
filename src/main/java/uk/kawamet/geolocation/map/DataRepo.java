@@ -1,6 +1,7 @@
-package uk.kawamet.geolocation;
+package uk.kawamet.geolocation.map;
 
 import org.springframework.stereotype.Repository;
+import uk.kawamet.geolocation.Point;
 
 import java.util.ArrayList;
 import java.util.List;

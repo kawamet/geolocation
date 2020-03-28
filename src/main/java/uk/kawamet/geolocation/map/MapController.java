@@ -1,9 +1,10 @@
-package uk.kawamet.geolocation;
+package uk.kawamet.geolocation.map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import uk.kawamet.geolocation.Point;
 
 import java.util.List;
 
