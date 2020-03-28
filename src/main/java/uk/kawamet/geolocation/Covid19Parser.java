@@ -87,7 +87,7 @@ public class Covid19Parser {
             dataRepoChart.addRecord(country, Integer.valueOf(cases));
         }
     }
-    //todo do skonczania chce dla wloch wziac 7 ostatnich wynikow
+
     @EventListener(ApplicationReadyEvent.class)
     private void addRecordsToLinear() throws IOException {
         CSVParser parse = getCSVData();
