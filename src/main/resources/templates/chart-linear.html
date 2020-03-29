@@ -52,7 +52,7 @@
 
             xAxis: {
                 accessibility: {
-                    rangeDescription: 'Range: 1 to 14'
+                    rangeDescription: 'Range: 1 to 60'
                 }
             },
 
@@ -89,8 +89,14 @@
             }],*/
 
             series: [{
-                name: 'Countries',
-                data: [[${surveyMap.values()}]]
+                name: 'Italy',
+                data: [[${surveyMapItaly.values()}]]
+            },{
+                name: 'Poland',
+                data: [[${surveyMapPoland.values()}]]
+            },{
+                name: 'UK',
+                data: [[${surveyMapUK.values()}]]
             }],
 
             responsive: {

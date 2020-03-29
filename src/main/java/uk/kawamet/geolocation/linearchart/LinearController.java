@@ -17,18 +17,14 @@ public class LinearController {
 
     @GetMapping("/displayLinear")
     public String barGraph(Model model) {
-       /* Map<Integer, Integer> surveyMap = new LinkedHashMap<>();
-        surveyMap.put(1, 10);
-        surveyMap.put(2, 20);
-        surveyMap.put(3, 30);
-        surveyMap.put(4, 40);
-        surveyMap.put(5, 50);
-        surveyMap.put(6, 60);
-        surveyMap.put(7, 80);*/
 
-        Map<Integer, Integer> surveyMap = dataRepoLinear.getIntegerMap();
+        Map<Integer, Integer> surveyMapItaly = dataRepoLinear.getIntegerMapItaly();
+        Map<Integer, Integer> surveyMapPoland = dataRepoLinear.getIntegerMapPoland();
+        Map<Integer, Integer> surveyMapUK = dataRepoLinear.getIntegerMapUK();
 
-        model.addAttribute("surveyMap", surveyMap);
+        model.addAttribute("surveyMapItaly", surveyMapItaly);
+        model.addAttribute("surveyMapPoland", surveyMapPoland);
+        model.addAttribute("surveyMapUK", surveyMapUK);
         return "chart-linear";
     }
 

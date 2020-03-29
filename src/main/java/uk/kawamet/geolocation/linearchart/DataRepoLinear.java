@@ -8,18 +8,39 @@ import java.util.Map;
 public class DataRepoLinear {
 
     //private Map<String, Map<String, Integer>> linearMap;
-    private Map<Integer, Integer> integerMap;
+    private Map<Integer, Integer> integerMapItaly;
+    private Map<Integer, Integer> integerMapPoland;
+    private Map<Integer, Integer> integerMapUK;
 
 
     public DataRepoLinear() {
-        integerMap = new HashMap<>();
+        integerMapItaly = new HashMap<>();
+        integerMapPoland = new HashMap<>();
+        integerMapUK = new HashMap<>();
     }
 
-    public void addPoint(Integer date, Integer cases) {
-        integerMap.put(date,cases);
+    public void addPoint(String country, String provinceState, Integer date, Integer cases) {
+        if(country.equals("Italy")) {
+            integerMapItaly.put(date, cases);
+        }
+        if (country.equals("Poland")){
+            integerMapPoland.put(date, cases);
+        }
+        if (country.equals("United Kingdom") && provinceState.isEmpty()){
+            integerMapUK.put(date, cases);
+        }
     }
 
-    public Map<Integer, Integer> getIntegerMap() {
-        return integerMap;
+
+    public Map<Integer, Integer> getIntegerMapItaly() {
+        return integerMapItaly;
+    }
+
+    public Map<Integer, Integer> getIntegerMapPoland() {
+        return integerMapPoland;
+    }
+
+    public Map<Integer, Integer> getIntegerMapUK() {
+        return integerMapUK;
     }
 }

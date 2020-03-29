@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class Covid19Parser {
 
     private static final String COVID_CONFIRMED_URL = "time_series_covid19_confirmed_global.csv";
-    private final DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("M/dd/yy");
+    private final DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("M/d/yy");
     private LocalDate lastDate = LocalDate.now();
 
     private DataRepo dataRepo;
@@ -58,7 +58,7 @@ public class Covid19Parser {
 //    }
 
 
-   // @EventListener(ApplicationReadyEvent.class)
+    // @EventListener(ApplicationReadyEvent.class)
     private CSVParser getCSVData() throws IOException {
         DownloadFile downloadFile = new DownloadFile();
         downloadFile.downloadFile();
@@ -74,10 +74,11 @@ public class Covid19Parser {
             double lon = Double.parseDouble(strings.get("Long"));
             String text = getLastDate(strings);
             String country = strings.get("Province/State").isEmpty() ? strings.get("Country/Region") : strings.get("Province/State");
-            dataRepo.addPoint(new Point(lat,lon, text, country));
+            dataRepo.addPoint(new Point(lat, lon, text, country));
 
         }
     }
+
     @EventListener(ApplicationReadyEvent.class)
     private void addRecordsToChart() throws IOException {
         CSVParser parse = getCSVData();
@@ -91,26 +92,25 @@ public class Covid19Parser {
     @EventListener(ApplicationReadyEvent.class)
     private void addRecordsToLinear() throws IOException {
         CSVParser parse = getCSVData();
-
         for (CSVRecord strings : parse) {
             getLastDate(strings);
-
-            if (strings.get("Country/Region").equals("Poland")){
-                ArrayList<String> sevenLastDaysLit = getLastSevenDays();
-                int i = 0;
-                for (String day : sevenLastDaysLit) {
-                    String s = strings.get(day);
-                    dataRepoLinear.addPoint(i++, Integer.valueOf(s));
-                }
+            String country = strings.get("Country/Region");
+            String provinceState = strings.get("Province/State");
+            ArrayList<String> sevenLastDaysLit = getLastXDays();
+            int i = 0;
+            for (String day : sevenLastDaysLit) {
+                String s = strings.get(day);
+                dataRepoLinear.addPoint(country, provinceState, i++, Integer.valueOf(s));
             }
+
         }
     }
 
-    private ArrayList<String> getLastSevenDays() {
-        ArrayList<String>  sevenLastDaysLit = new ArrayList<>();
-        for (int i = 13; i >= 0; i--) {
+    private ArrayList<String> getLastXDays() {
+        ArrayList<String> sevenLastDaysLit = new ArrayList<>();
+        for (int i = 59; i >= 0; i--) {
             String format = lastDate.minusDays(i).format(newPattern);
-            sevenLastDaysLit.add(String.valueOf(format));
+            sevenLastDaysLit.add(format);
         }
         return sevenLastDaysLit;
     }
@@ -122,10 +122,10 @@ public class Covid19Parser {
         String todayS = today.format(newPattern);
         String yesterdayS = yesterday.format(newPattern);
 
-        try{
+        try {
             text = strings.get(todayS);
             lastDate = today;
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             text = strings.get(yesterdayS);
             lastDate = yesterday;
         }
