@@ -98,13 +98,13 @@
                    }],*/
 
             series: [{
-                name: 'Italy',
+                name: [[${@environment.getProperty('country1')}]],
                 data: [[${surveyMapItaly.values()}]]
             }, {
-                name: 'Poland',
+                name: [[${@environment.getProperty('country2')}]],
                 data: [[${surveyMapPoland.values()}]]
             }, {
-                name: 'UK',
+                name: [[${@environment.getProperty('country3')}]],
                 data: [[${surveyMapUK.values()}]]
             }],
 

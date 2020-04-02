@@ -19,6 +19,6 @@ public class ChartController {
     public String barGraph(Model model) {
         Map<String, Integer> surveyMap = dataRepoChart.getSurveyMap();
         model.addAttribute("surveyMap", surveyMap);
-        return "charts";
+        return "chart-bar";
     }
 }
