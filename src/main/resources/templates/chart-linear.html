@@ -16,14 +16,23 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link th:href="@{css/style.css}" href="../../static/css/style.css"
-          rel="stylesheet" type="text/css" media="screen"/>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <link th:href="@{css/styleLinear.css}" href="../../static/css/styleLinear.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link th:href="@{css/fragment-nav.css}" href="../../static/css/fragment-nav.css" rel="stylesheet" type="text/css" media="screen"/>
 
 </head>
 <body>
 
-<figure class="highcharts-figure">
+<div id="nav-bar-block">
+    <div id="nav-bar">
+        <div th:insert="~{fragment/nav :: navbar}"></div>
+    </div>
+</div>
+
+<figure class="highcharts-figure" style="z-index: -2">
     <div id="container"></div>
     <p class="highcharts-description">
         Basic line chart showing trends in a dataset. This chart includes the
@@ -33,7 +42,7 @@
 </figure>
 
 <script th:inline="javascript">
-    $(function() {
+    $(function () {
         Highcharts.chart('container', {
 
             title: {
@@ -71,30 +80,30 @@
                 }
             },
 
-     /*       series: [{
-                name: 'Installation',
-                data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-            }, {
-                name: 'Manufacturing',
-                data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-            }, {
-                name: 'Sales & Distribution',
-                data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
-            }, {
-                name: 'Project Development',
-                data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
-            }, {
-                name: 'Other',
-                data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
-            }],*/
+            /*       series: [{
+                       name: 'Installation',
+                       data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+                   }, {
+                       name: 'Manufacturing',
+                       data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+                   }, {
+                       name: 'Sales & Distribution',
+                       data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+                   }, {
+                       name: 'Project Development',
+                       data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+                   }, {
+                       name: 'Other',
+                       data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+                   }],*/
 
             series: [{
                 name: 'Italy',
                 data: [[${surveyMapItaly.values()}]]
-            },{
+            }, {
                 name: 'Poland',
                 data: [[${surveyMapPoland.values()}]]
-            },{
+            }, {
                 name: 'UK',
                 data: [[${surveyMapUK.values()}]]
             }],
@@ -118,6 +127,17 @@
     });
 
 </script>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

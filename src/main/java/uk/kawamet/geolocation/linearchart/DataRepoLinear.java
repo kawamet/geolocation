@@ -7,7 +7,6 @@ import java.util.Map;
 @Repository
 public class DataRepoLinear {
 
-    //private Map<String, Map<String, Integer>> linearMap;
     private Map<Integer, Integer> integerMapItaly;
     private Map<Integer, Integer> integerMapPoland;
     private Map<Integer, Integer> integerMapUK;
