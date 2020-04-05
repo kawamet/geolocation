@@ -20,8 +20,8 @@
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-    <link th:href="@{css/styleLinear.css}" href="../../static/css/styleLinear.css" rel="stylesheet" type="text/css" media="screen"/>
     <link th:href="@{css/fragment-nav.css}" href="../../static/css/fragment-nav.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link th:href="@{css/style-linear.css}" href="../../static/css/style-linear.css" rel="stylesheet" type="text/css" media="screen"/>
 
 </head>
 <body>
@@ -32,6 +32,7 @@
     </div>
 </div>
 
+
 <figure class="highcharts-figure" style="z-index: -2">
     <div id="container"></div>
     <p class="highcharts-description">
@@ -40,6 +41,7 @@
         enhanced readability.
     </p>
 </figure>
+
 
 <script th:inline="javascript">
     $(function () {

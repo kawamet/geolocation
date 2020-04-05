@@ -1,7 +1,52 @@
-#mapid {
-    height: 80vh;
-    z-index: 0;
-    margin: 10vh 10vw ;
+.d-block {
+    max-width: 100%;
+    height: 100vh;
+    -webkit-filter: grayscale(60%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
 }
 
+carousel-item {
+    max-width: 100%;
+    height: 100vh;
+}
 
+.carousel-inner {
+    background: #c4c4c4;
+}
+
+h5, p {
+    color: #f4f4f4;
+    font-weight: bold;
+}
+
+.carousel-caption {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 15px 10px;
+    margin-bottom: 40px;
+}
+
+.btn {
+    margin: 10px 0 15px 0;
+}
+
+a {
+    color: #f4f4f4;;
+}
+
+a:link {
+    text-decoration: none;
+    color: #f4f4f4;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+}
+
+.btn:hover {
+    background-color: #f1f7ff;
+}

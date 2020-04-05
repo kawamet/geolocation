@@ -16,7 +16,11 @@
         font-weight: bold;
     }
 
-    .nav-item:hover {
-        background-color: rgba(63, 127, 191, 0.2);
+    a:hover {
+        color: white;
     }
+
+  /*  .nav-item:hover {
+        background-color: rgba(63, 127, 191, 0.2);
+    }*/
 }
